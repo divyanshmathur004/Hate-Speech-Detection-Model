@@ -95,7 +95,7 @@ Deploy via Streamlit/Flask for real-time moderation
 
 🖥️ How to Run
 # Clone repo
-git clone https://github.com/divyanshmathur004/hate-speech-detection.git
+git clone https://github.com/divyanshmathur004/Hate-Speech-Detection-Model
 cd hate-speech-detection
 
 # Install dependencies
