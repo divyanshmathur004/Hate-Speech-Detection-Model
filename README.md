@@ -1,107 +1,105 @@
-🛡️ Hate Speech Detection Model
-📌 Project Overview
+🛡️ Hate Speech Detection on Twitter
 
-This project focuses on building a machine learning model to detect hate speech, offensive language, and non-offensive tweets from Twitter data.
-The motivation is to tackle the growing issue of online harassment and provide an automated way to classify harmful content.
+
+
+
+
+
+📌 Overview
+
+This project is a machine learning pipeline for classifying tweets into:
+
+🟥 Hate Speech
+
+🟧 Offensive Language
+
+🟩 Non-Offensive
+
+It applies NLP preprocessing, feature extraction, and supervised learning to tackle harmful content detection on social media.
 
 📂 Dataset
 
-Source: [twitter.csv] (provided dataset)
+Source: twitter.csv
 
-Classes:
+Columns:
 
-0 → Hate Speech
+tweet → raw text from Twitter
 
-1 → Offensive Language
+class → numeric label (0,1,2)
 
-2 → No Hate and Offensive
+labels → mapped text labels (Hate Speech, Offensive, No Hate)
 
-Each tweet is labeled accordingly to train the model.
+⚙️ Workflow
 
-⚙️ Project Workflow
+Exploratory Data Analysis (EDA)
 
-Data Loading → Import CSV file using Pandas.
+Class distribution
 
-EDA (Exploratory Data Analysis)
+Tweet length distribution
 
-Class distribution visualization
-
-Tweet length analysis
-
-Word clouds of common words in each class
+Word clouds
 
 Text Preprocessing
 
-Lowercasing text
+Lowercasing, removing URLs, punctuation, numbers
 
-Removing punctuation, URLs, HTML tags, numbers
+Stopword removal (NLTK)
 
-Removing stopwords (using NLTK)
-
-Applying stemming (Snowball Stemmer)
+Stemming (Snowball Stemmer)
 
 Feature Engineering
 
-Bag-of-Words representation using CountVectorizer
+Bag-of-Words with CountVectorizer
 
-Optionally extendable to TF-IDF or n-grams
+Train/test split
 
 Model Training
 
-Trained using Decision Tree Classifier
-
-Dataset split: 67% training / 33% testing
+Base model: Decision Tree Classifier
 
 Evaluation
 
-Train and Test accuracy scores
+Accuracy on train & test sets
 
-Can be extended with precision, recall, F1-score, and confusion matrix
+Extendable with precision, recall, F1-score
 
-Prediction Example
+Prediction Demo
 
-Test the model on a custom input tweet
+Example: "you are a bad person" → Offensive Language
 
 📊 Results
 
-Decision Tree Model trained and tested with promising accuracy.
+Decision Tree achieved solid accuracy on training/test sets
 
-Shows ability to correctly differentiate between hate speech, offensive language, and normal tweets.
+Train Accuracy: 99.96%
 
-Future improvements can significantly boost performance.
+Test Accuracy: 87.68%
+
+The Decision Tree Classifier fits training data almost perfectly, but shows lower test accuracy — indicating possible overfitting.
+
+Despite this, the model demonstrates strong capability to classify tweets into Hate Speech, Offensive, or Non-Offensive categories.
+
+Future improvements (see below) can boost performance significantly
 
 🚀 Future Improvements
 
-Use TF-IDF Vectorizer instead of simple Bag-of-Words
+Replace BoW with TF-IDF or word embeddings
 
-Train multiple models: Logistic Regression, Naive Bayes, SVM, Random Forest, XGBoost
+Experiment with Logistic Regression, Naive Bayes, SVM, Random Forest, XGBoost
 
-Handle class imbalance with resampling or class weighting
+Handle class imbalance with resampling or class weights
 
-Use advanced NLP methods like Word2Vec, GloVe, or Transformer-based models (BERT)
+Use Transformer models (BERT/DistilBERT)
 
-Deploy as a Flask/Streamlit web app for real-time predictions
+Deploy via Streamlit/Flask for real-time moderation
 
 🖥️ How to Run
-
-Clone this repository:
-
-git clone https://github.com/your-username/hate-speech-detection.git
+# Clone repo
+git clone https://github.com/divyanshmathur004/hate-speech-detection.git
 cd hate-speech-detection
 
-
-Install dependencies:
-
+# Install dependencies
 pip install -r requirements.txt
 
-
-Run the Jupyter Notebook:
-
+# Run notebook
 jupyter notebook Hate_Speech_Detection_Model.ipynb
-
-
-(Optional) Test with a custom input:
-
-sample = "you are a bad person"
-data = cv.transform([sample]).toarray()
-print(model.predict(data))
